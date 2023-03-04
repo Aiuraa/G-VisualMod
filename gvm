@@ -15,7 +15,7 @@ if [ "$?" != 0 ]; then
 fi
 
 # Magisk Mod Directory
-[ -d "/sbin/.magisk" ] && MOUNTPATH="/sbin/.magisk/modules" || MOUNTPATH="$(find /dev -mindepth 2 -maxdepth 2 -type d -name ".magisk")/modules"
+[ -d "/sbin/.magisk" ] && MOUNTPATH="/sbin/.magisk/modules" || [ -d "/data/adb" ] && MOUNTPATH="/data/adb/modules" || MOUNTPATH="$(find /dev -mindepth 2 -maxdepth 2 -type d -name ".magisk")/modules"
 MODDIR="$MOUNTPATH/$ID"
 [ ! -d $MODDIR ] && { echo "Module not detected!"; exit 1; }
 
